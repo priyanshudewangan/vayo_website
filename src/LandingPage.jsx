@@ -134,11 +134,10 @@ export const LandingPage = ({ onOpenLogin, onJoinWaitlistSubmit }) => {
     <div className="min-h-screen bg-[#f3f5f8] text-slate-800 font-sans overflow-hidden selection:bg-violet-200">
 
       {/* 1. Transparent Navigation Header (Overlay) */}
-      <header className={`sticky top-0 left-0 right-0 z-[100] w-full transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-white/80 backdrop-blur-md shadow-sm border-b border-gray-200/50' 
+      <header className={`sticky top-0 left-0 right-0 z-[100] w-full transition-all duration-300 ${isScrolled
+          ? 'bg-white/80 backdrop-blur-md shadow-sm border-b border-gray-200/50'
           : 'bg-transparent border-b-0'
-      }`}>
+        }`}>
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center gap-2 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
@@ -494,15 +493,16 @@ export const LandingPage = ({ onOpenLogin, onJoinWaitlistSubmit }) => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 
             {/* Left Graphics */}
-            <div className="lg:col-span-5 relative h-[300px] md:h-[400px] bg-slate-50 border border-gray-100 rounded-[32px] flex items-center justify-center p-6 shadow-md">
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none" />
-              <div className="flex flex-col gap-6 text-center max-w-sm">
-                <div className="w-16 h-16 rounded-full bg-emerald-50 border border-emerald-100 text-emerald-600 flex items-center justify-center mx-auto shadow-lg shadow-emerald-500/5 animate-pulse-slow">
-                  <Shield className="w-8 h-8 text-white" />
+            <div className="lg:col-span-5 relative h-[300px] md:h-[400px] border border-emerald-100 bg-white/70 backdrop-blur-xl rounded-[32px] flex items-center justify-center p-6 shadow-[0_20px_50px_-15px_rgba(16,185,129,0.12),0_15px_30px_-10px_rgba(0,0,0,0.02)] transition-all duration-300 hover:scale-[1.01] hover:shadow-[0_25px_60px_-10px_rgba(16,185,129,0.15)] overflow-hidden">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-emerald-500/8 to-teal-500/4 rounded-full blur-3xl pointer-events-none" />
+              <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-emerald-500/4 to-teal-500/8 rounded-full blur-3xl pointer-events-none" />
+              <div className="flex flex-col gap-6 text-center max-w-sm relative z-10">
+                <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white flex items-center justify-center mx-auto shadow-lg shadow-emerald-500/25 animate-pulse-slow">
+                  <Shield className="w-10 h-10" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-slate-900">Safety is Our First Priority</h3>
-                  <p className="text-xs text-slate-500 mt-1.5 leading-relaxed">
+                  <h3 className="text-2xl font-black text-slate-800 leading-tight mb-2">Safety is Our First Priority</h3>
+                  <p className="text-xs text-slate-500 leading-relaxed font-light">
                     VAYO implements rigid verification checkups for every member to guarantee a zero-harassment, premium offline experience.
                   </p>
                 </div>

@@ -59,8 +59,8 @@ const RESULTS_MAP = {
   outdoor: {
     title: "Spontaneous Adventurer",
     desc: "You belong in the wild, scaling ridges or swapping tales under starlit skies. You value friendships forged over shared physical struggles and scenic rewards.",
-    event: "Yosemite Ridge Hike",
-    eventDesc: "A weekend trip exploring forest trails and camping under a clear night sky.",
+    event: "Kudremukh Peak Trek",
+    eventDesc: "A weekend trek through lush meadows and misty peaks in the Western Ghats.",
     members: [
       { name: "Aarav Mehta", role: "Trek Leader", image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=150" },
       { name: "Elena R.", role: "Travel Blogger", image: "https://i.pravatar.cc/150?img=45" }
@@ -70,7 +70,7 @@ const RESULTS_MAP = {
     title: "Future Architect",
     desc: "You get excited about ideas, innovation, and finding new ways to solve hard problems. You look for partners in crime to build, scale, and fund the next big things.",
     event: "Tech & VC Founder Mixer",
-    eventDesc: "An exclusive networking mixer with investors and Silicon Valley founders.",
+    eventDesc: "An exclusive networking mixer with investors and startup founders in HSR Lounge Hub.",
     members: [
       { name: "Meera Nair", role: "Fintech Founder", image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150" },
       { name: "Alex K.", role: "Venture Partner", image: "https://i.pravatar.cc/150?img=12" }
@@ -130,10 +130,11 @@ export const VibeQuiz = ({ onJoinWaitlist }) => {
   const currentQuestion = QUESTIONS[currentStep];
 
   return (
-    <div className="w-full max-w-2xl mx-auto border border-white/10 bg-black/40 backdrop-blur-2xl p-6 md:p-10 rounded-[32px] shadow-2xl relative overflow-hidden">
+    <div className="w-full max-w-2xl mx-auto border border-violet-100 bg-white/70 backdrop-blur-xl p-8 md:p-12 rounded-[36px] shadow-[0_20px_60px_-15px_rgba(109,40,217,0.12),0_15px_30px_-10px_rgba(0,0,0,0.03)] relative overflow-hidden transition-all duration-300">
       
-      {/* Background radial highlight */}
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-violet-600/10 rounded-full blur-3xl pointer-events-none" />
+      {/* Background radial highlights */}
+      <div className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-br from-violet-500/8 to-indigo-500/4 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-rose-500/4 to-amber-500/4 rounded-full blur-3xl pointer-events-none" />
 
       <AnimatePresence mode="wait">
         {!isFinished ? (
@@ -146,15 +147,18 @@ export const VibeQuiz = ({ onJoinWaitlist }) => {
             className="flex flex-col h-full"
           >
             {/* Step Counter */}
-            <div className="flex items-center justify-between text-xs font-mono text-zinc-500 uppercase mb-4">
-              <span>Vibe Check</span>
+            <div className="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-slate-400 mb-4">
+              <span className="flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-violet-500 animate-pulse" />
+                Vibe Check
+              </span>
               <span>Step {currentStep + 1} of {QUESTIONS.length}</span>
             </div>
 
             {/* Progress Bar */}
-            <div className="w-full h-1 bg-white/5 rounded-full overflow-hidden mb-8">
+            <div className="w-full h-2 bg-slate-100 rounded-full overflow-hidden mb-8">
               <motion.div
-                className="h-full bg-violet-500"
+                className="h-full bg-gradient-to-r from-violet-600 to-indigo-600 rounded-full"
                 initial={{ width: 0 }}
                 animate={{ width: `${((currentStep + 1) / QUESTIONS.length) * 100}%` }}
                 transition={{ duration: 0.3 }}
@@ -162,21 +166,21 @@ export const VibeQuiz = ({ onJoinWaitlist }) => {
             </div>
 
             {/* Question Text */}
-            <h4 className="text-xl md:text-2xl font-bold font-display text-white mb-6 md:mb-8 leading-tight text-center">
+            <h4 className="text-xl md:text-2xl font-black font-display text-slate-800 mb-6 md:mb-8 leading-snug text-center">
               {currentQuestion.question}
             </h4>
 
             {/* Options */}
-            <div className="grid grid-cols-1 gap-3.5">
+            <div className="grid grid-cols-1 gap-4">
               {currentQuestion.options.map((opt, i) => (
                 <button
                   key={i}
                   onClick={() => handleSelectOption(opt.value)}
-                  className="w-full text-left p-4.5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-violet-500/40 text-sm md:text-base text-white/90 hover:text-white transition-all cursor-pointer flex items-center justify-between group active:scale-[0.99] duration-150"
+                  className="w-full text-left p-5 rounded-2xl bg-white border border-slate-100 hover:border-violet-300 hover:bg-violet-50/20 text-slate-700 hover:text-slate-900 shadow-[0_4px_12px_rgba(0,0,0,0.015)] hover:shadow-[0_8px_24px_rgba(109,40,217,0.06)] hover:-translate-y-[2px] transition-all cursor-pointer flex items-center justify-between group active:scale-[0.99] duration-200"
                 >
-                  <span>{opt.text}</span>
-                  <div className="w-6 h-6 rounded-full border border-white/20 bg-white/5 flex items-center justify-center group-hover:border-violet-500/50 group-hover:bg-violet-500/10 transition-all">
-                    <ArrowRight className="w-3.5 h-3.5 text-zinc-400 group-hover:text-violet-400 transition-colors" />
+                  <span className="font-semibold text-sm md:text-base pr-4 leading-normal">{opt.text}</span>
+                  <div className="w-8 h-8 rounded-full border border-slate-200 bg-slate-50 flex items-center justify-center group-hover:border-violet-500 group-hover:bg-violet-500/10 shrink-0 transition-all shadow-inner">
+                    <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-violet-600 transition-colors" />
                   </div>
                 </button>
               ))}
@@ -191,47 +195,47 @@ export const VibeQuiz = ({ onJoinWaitlist }) => {
             className="text-center"
           >
             {/* Vibe badge */}
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-400 text-xs font-bold uppercase tracking-widest mb-4">
+            <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-violet-100 border border-violet-200 text-violet-600 text-xs font-bold uppercase tracking-wider mb-4">
               ✨ Match Result
             </div>
 
             {/* Title */}
-            <h4 className="text-3xl md:text-4xl font-black font-display text-white tracking-tight leading-none mb-3">
+            <h4 className="text-3xl md:text-4xl font-black font-display bg-gradient-to-r from-slate-900 to-violet-800 bg-clip-text text-transparent tracking-tight leading-none mb-3">
               {getResult().title}
             </h4>
             
-            <p className="text-white/60 text-sm md:text-base leading-relaxed max-w-md mx-auto mb-8 font-normal">
+            <p className="text-slate-500 text-sm md:text-base leading-relaxed max-w-md mx-auto mb-8 font-light">
               {getResult().desc}
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 text-left">
               {/* Recommended Event */}
-              <div className="border border-white/10 bg-white/[0.03] rounded-2xl p-5 flex flex-col justify-between">
+              <div className="border border-slate-100 bg-white rounded-2xl p-6 flex flex-col justify-between shadow-[0_4px_20px_rgba(0,0,0,0.015)] transition-all duration-300 hover:shadow-[0_8px_30px_rgba(16,185,129,0.04)]">
                 <div>
-                  <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-1 mb-1.5">
+                  <span className="text-[10px] font-extrabold text-emerald-600 uppercase tracking-widest flex items-center gap-1.5 mb-2">
                     <Calendar className="w-3.5 h-3.5" /> Recommended Event
                   </span>
-                  <h5 className="text-base font-bold text-white leading-tight">{getResult().event}</h5>
-                  <p className="text-xs text-white/50 mt-1 leading-normal">{getResult().eventDesc}</p>
+                  <h5 className="text-base md:text-lg font-black text-slate-800 leading-tight">{getResult().event}</h5>
+                  <p className="text-xs text-slate-400 mt-2 leading-relaxed font-light">{getResult().eventDesc}</p>
                 </div>
-                <div className="mt-4 flex items-center gap-2 text-xs font-semibold text-emerald-400">
+                <div className="mt-5 flex items-center gap-1.5 text-xs font-bold text-emerald-600">
                   <span>Guaranteed entry spot</span>
-                  <ShieldCheck className="w-4 h-4 fill-emerald-400/10" />
+                  <ShieldCheck className="w-4 h-4 text-emerald-500" />
                 </div>
               </div>
 
               {/* Matched Members */}
-              <div className="border border-white/10 bg-white/[0.03] rounded-2xl p-5">
-                <span className="text-[10px] font-bold text-violet-400 uppercase tracking-wider flex items-center gap-1 mb-3.5">
+              <div className="border border-slate-100 bg-white rounded-2xl p-6 shadow-[0_4px_20px_rgba(0,0,0,0.015)] transition-all duration-300 hover:shadow-[0_8px_30px_rgba(109,40,217,0.04)]">
+                <span className="text-[10px] font-extrabold text-violet-600 uppercase tracking-widest flex items-center gap-1.5 mb-4">
                   <Users className="w-3.5 h-3.5" /> Shared Vibe Members
                 </span>
-                <div className="flex flex-col gap-3">
+                <div className="flex flex-col gap-3.5">
                   {getResult().members.map((member, idx) => (
                     <div key={idx} className="flex items-center gap-3">
-                      <img src={member.image} className="w-9 h-9 rounded-xl object-cover border border-white/10" alt={member.name} />
+                      <img src={member.image} className="w-10 h-10 rounded-xl object-cover border border-slate-100 shadow-sm" alt={member.name} />
                       <div>
-                        <h6 className="text-xs font-bold text-white">{member.name}</h6>
-                        <p className="text-[10px] text-white/40">{member.role}</p>
+                        <h6 className="text-xs font-bold text-slate-800">{member.name}</h6>
+                        <p className="text-[10px] text-slate-400">{member.role}</p>
                       </div>
                     </div>
                   ))}
@@ -240,10 +244,10 @@ export const VibeQuiz = ({ onJoinWaitlist }) => {
             </div>
 
             {/* Controls */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-2">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
               <button
                 onClick={handleReset}
-                className="w-full sm:w-auto py-3 px-6 rounded-2xl border border-white/15 bg-white/5 hover:bg-white/10 text-white font-semibold text-sm transition-all flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full sm:w-auto py-3.5 px-6 rounded-full border border-slate-200 bg-white hover:bg-slate-50 text-slate-600 hover:text-slate-850 font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-97 shadow-sm duration-150"
               >
                 <RotateCcw className="w-4 h-4" />
                 Retake Quiz
@@ -251,7 +255,7 @@ export const VibeQuiz = ({ onJoinWaitlist }) => {
               
               <button
                 onClick={() => onJoinWaitlist?.()}
-                className="w-full sm:w-auto py-3 px-8 rounded-2xl bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white font-bold text-sm shadow-xl shadow-indigo-600/20 active:scale-97 transition-all cursor-pointer"
+                className="w-full sm:w-auto py-3.5 px-8 rounded-full bg-[#0f172a] hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-slate-900/10 active:scale-97 transition-all cursor-pointer duration-150"
               >
                 Join Waitlist to Match
               </button>
